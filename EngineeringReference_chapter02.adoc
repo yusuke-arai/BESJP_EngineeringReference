@@ -1477,6 +1477,13 @@ stem:[Q_{AC,ahu,room,h,i,d}]|空調機群iの日付dにおける日積算室負�
 [stem]
 ++++++++++++++++++++++++++++++++++++++++++++
 OnlyOALoad_{AC,ahu,i} = \begin{cases}
+{\rm False} & ,(\mbox{1つ以上の室rで} OnlyOALoad_{AC,ahu,i,r} = {\rm True})) \\
+{\rm True} & ,(\mbox{それ以外})
+\end{cases}
+++++++++++++++++++++++++++++++++++++++++++++
+[stem]
+++++++++++++++++++++++++++++++++++++++++++++
+OnlyOALoad_{AC,ahu,i,r} = \begin{cases}
 {\rm False} & ,(EquipmentName_{AC,ahu,room,i,r} = \mbox{空調機群i名称}) \\
 {\rm True} & ,(\mbox{それ以外})
 \end{cases}
@@ -1488,20 +1495,26 @@ OnlyOALoad_{AC,ahu,i} = \begin{cases}
 外気負荷のみを処理する空調機群については、日積算室負荷は0とし、後述する外気負荷のみを積算することとする。
 
 ====
-a) 外気負荷のみ処理する場合（ stem:[OnlyOALoad_{AC,ahu,i} = {\rm True}] ）
 [stem]
 ++++++++++++++++++++++++++++++++++++++++++++
-Q_{AC,ahu,room,c,i,d} = 0 \\
-Q_{AC,ahu,room,h,i,d} = 0
+Q_{AC,ahu,room,c,i,d} = \sum_{r} Q_{AC,ahu,room,c,i,r,d} \\
+Q_{AC,ahu,room,h,i,d} = \sum_{r} Q_{AC,ahu,room,h,i,r,d}
+++++++++++++++++++++++++++++++++++++++++++++
+====
+====
+a) 外気負荷のみ処理する場合（ stem:[OnlyOALoad_{AC,ahu,i,r} = {\rm True}] ）
+[stem]
+++++++++++++++++++++++++++++++++++++++++++++
+Q_{AC,ahu,room,c,i,r,d} = 0 \\
+Q_{AC,ahu,room,h,i,r,d} = 0
 ++++++++++++++++++++++++++++++++++++++++++++
 
 b) それ以外
 [stem]
 ++++++++++++++++++++++++++++++++++++++++++++
-Q_{AC,ahu,room,c,i,d} = \sum_{r=1} (Q_{AC,room,c,r,d} \times A_{room,i,r} ) \times 3600 \times 10^{-6}  \\
-Q_{AC,ahu,room,h,i,d} = \sum_{r=1} (Q_{AC,room,h,r,d} \times A_{room,i,r} ) \times 3600 \times 10^{-6}
+Q_{AC,ahu,room,c,i,r,d} = ( Q_{AC,room,c,r,d} \times A_{room,i,r} ) \times 3600 \times 10^{-6}  \\
+Q_{AC,ahu,room,h,i,r,d} = ( Q_{AC,room,h,r,d} \times A_{room,i,r} ) \times 3600 \times 10^{-6}
 ++++++++++++++++++++++++++++++++++++++++++++
-
 ====
 
 

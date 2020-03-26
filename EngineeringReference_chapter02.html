@@ -3968,6 +3968,14 @@ Dを日積算室負荷（暖房）\(Q_{AC,room,h,i,d}\)［Wh/（m<sup>2</sup>・
 <div class="stemblock">
 <div class="content">
 \[OnlyOALoad_{AC,ahu,i} = \begin{cases}
+{\rm False} &amp; ,(\mbox{1つ以上の室rで} OnlyOALoad_{AC,ahu,i,r} = {\rm True})) \\
+{\rm True} &amp; ,(\mbox{それ以外})
+\end{cases}\]
+</div>
+</div>
+<div class="stemblock">
+<div class="content">
+\[OnlyOALoad_{AC,ahu,i,r} = \begin{cases}
 {\rm False} &amp; ,(EquipmentName_{AC,ahu,room,i,r} = \mbox{空調機群i名称}) \\
 {\rm True} &amp; ,(\mbox{それ以外})
 \end{cases}\]
@@ -3982,13 +3990,23 @@ Dを日積算室負荷（暖房）\(Q_{AC,room,h,i,d}\)［Wh/（m<sup>2</sup>・
 </div>
 <div class="exampleblock">
 <div class="content">
+<div class="stemblock">
+<div class="content">
+\[Q_{AC,ahu,room,c,i,d} = \sum_{r} Q_{AC,ahu,room,c,i,r,d} \\
+Q_{AC,ahu,room,h,i,d} = \sum_{r} Q_{AC,ahu,room,h,i,r,d}\]
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
 <div class="paragraph">
-<p>a) 外気負荷のみ処理する場合（ \(OnlyOALoad_{AC,ahu,i} = {\rm True}\) ）</p>
+<p>a) 外気負荷のみ処理する場合（ \(OnlyOALoad_{AC,ahu,i,r} = {\rm True}\) ）</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[Q_{AC,ahu,room,c,i,d} = 0 \\
-Q_{AC,ahu,room,h,i,d} = 0\]
+\[Q_{AC,ahu,room,c,i,r,d} = 0 \\
+Q_{AC,ahu,room,h,i,r,d} = 0\]
 </div>
 </div>
 <div class="paragraph">
@@ -3996,8 +4014,8 @@ Q_{AC,ahu,room,h,i,d} = 0\]
 </div>
 <div class="stemblock">
 <div class="content">
-\[Q_{AC,ahu,room,c,i,d} = \sum_{r=1} (Q_{AC,room,c,r,d} \times A_{room,i,r} ) \times 3600 \times 10^{-6}  \\
-Q_{AC,ahu,room,h,i,d} = \sum_{r=1} (Q_{AC,room,h,r,d} \times A_{room,i,r} ) \times 3600 \times 10^{-6}\]
+\[Q_{AC,ahu,room,c,i,r,d} = ( Q_{AC,room,c,r,d} \times A_{room,i,r} ) \times 3600 \times 10^{-6}  \\
+Q_{AC,ahu,room,h,i,r,d} = ( Q_{AC,room,h,r,d} \times A_{room,i,r} ) \times 3600 \times 10^{-6}\]
 </div>
 </div>
 </div>
