@@ -95,5 +95,5 @@ https://webpro-nr.github.io/BESJP_EngineeringReference/csv2xml/index.html
 Dockerがインストールされていれば、以下のコマンドでAsciiDocファイルをHTMLに変換できます。
 
 ```
-docker-compose run asciidoctor
+docker-compose run --rm asciidoctor
 ```
